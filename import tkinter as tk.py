@@ -3,6 +3,8 @@ from tkinter import *
 import random  
 import json 
 import os
+with open("user_data.json", "r") as file: 
+    data = json.load(file)
 
 def clear_window(): 
     for widget in screen.winfo_children(): 
@@ -31,10 +33,7 @@ def tournament_config():
     tk.Label(screen, text="Password", font=("Times New Roman", 15)).pack(pady=20)
     password = tk.Entry(screen, bg="white", fg="black")
     password.insert(0, "At least 8 characters long")
-    password.pack(pady=10)  
-
-    next_button = tk.Button(screen, text="Next", command=tournament_config)
-    next_button.pack(pady=10) 
+    password.pack(pady=10) 
 
 screen = tk.Tk()
 screen.geometry("800x600")
@@ -46,8 +45,8 @@ title.pack(padx=10, pady=20)
 login_button = tk.Button(screen, text="Log in", command=tournament_config)
 login_button.pack(pady=10)  
 
-
-
+next_button = tk.Button(screen, text="Next", command=tournament_config)
+next_button.pack(pady=10) 
 
 
 

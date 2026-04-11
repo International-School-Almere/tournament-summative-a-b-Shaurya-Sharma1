@@ -1,0 +1,20 @@
+import json 
+
+json_string =  ''' 
+{ 
+        "students": [ 
+            { 
+                "First_name": "",
+                "Last_name": "",
+                "Student number": "",
+                "password": "",
+                "event": " "
+
+            }
+        ]
+           
+}  
+'''
+
+data = json.loads(json_string)
+

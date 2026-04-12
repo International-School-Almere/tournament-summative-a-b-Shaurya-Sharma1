@@ -10,8 +10,8 @@ def clear_window():
 
 def tournament_config(): 
     clear_window()
-    screen.title("Login")
-    tk.Label(screen, text="Login", font=("Times New Roman", 35)).pack(pady=20)  
+    screen.title("Sign up")
+    tk.Label(screen, text="Sign up", font=("Times New Roman", 35)).pack(pady=20)  
 
     tk.Label(screen, text="First name", font=("Times New Roman", 15)).pack(pady=20)
     firstname_box = tk.Entry(screen, bg="white", fg="black")
@@ -33,18 +33,42 @@ def tournament_config():
     password.insert(0, "At least 8 characters long")
     password.pack(pady=10)  
 
-    next_button = tk.Button(screen, text="Next", command=tournament_config)
+    next_button = tk.Button(screen, text="Next", command=None)
     next_button.pack(pady=10) 
+
+def login_screen(): 
+    clear_window()
+    screen.title("Login")
+    tk.Label(screen,font=("Times New Roman", 35)).pack(pady=20)
+
+    tk.Label(screen, text="Student Number", font=("Times New Roman", 15)).pack(pady=20)
+    studentnumber_box = tk.Entry(screen, bg="white", fg="black")
+    studentnumber_box.insert(0, "Enter your student number")
+    studentnumber_box.pack(pady=10)
+    
+    tk.Label(screen, text="Password", font=("Times New Roman", 15)).pack(pady=20)
+    password = tk.Entry(screen, bg="white", fg="black")
+    password.insert(0, "At least 8 characters long")
+    password.pack(pady=10)
+
+    next_button = tk.Button(screen, text="Next", command=None)
+    next_button.pack(pady=10)
 
 screen = tk.Tk()
 screen.geometry("800x600")
-screen.title("Tournament App")
+screen.title("Tournament App") 
 
 title = tk.Label(screen, text="Tournament App", font=("Times New Roman", 35))
 title.pack(padx=10, pady=20) 
 
-login_button = tk.Button(screen, text="Log in", command=tournament_config)
-login_button.pack(pady=10)  
+button_frame = tk.Frame(screen)
+button_frame.pack(pady=10)
+
+login_button = tk.Button(button_frame, text="Log in", command=login_screen)
+login_button.pack(padx=10,pady=10)   
+
+signup_button = tk.Button(button_frame, text="Sign up", command=tournament_config)
+signup_button.pack(side="right",padx=10,pady=10)
 
 
 

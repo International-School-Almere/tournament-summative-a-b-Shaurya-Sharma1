@@ -1,10 +1,23 @@
 import tkinter as tk 
-from tkinter import *  
+from tkinter import * 
 import random  
 import json 
-import os
+import os 
 
+# ------------------------------------------- INITIALIZATION -------------------------------------------------------
+# Initializing screen first so all functions can recognize it
+screen = tk.Tk()
+screen.geometry("800x600")
+screen.title("Tournament App") 
+
+# Placeholders for student data
+firstname_box = "" 
+secondname_box = ""
+student_name = "" 
+
+# ------------------------------------------- FUNCTIONS ------------------------------------------------------------
 def clear_window(): 
+    """Clears widgets to allow for a new screen/frame."""
     for widget in screen.winfo_children(): 
         widget.destroy() 
 
@@ -14,16 +27,15 @@ def tournament_config():
     tk.Label(screen, text="Sign up", font=("Times New Roman", 35)).pack(pady=20)  
 
     tk.Label(screen, text="First name", font=("Times New Roman", 15)).pack(pady=20)
-    firstname_box = tk.Entry(screen, bg="white", fg="black")
-    firstname_box.insert(0, "Enter first name")
-    firstname_box.pack(pady=10)
+    firstname_box_entry = tk.Entry(screen, bg="white", fg="black")
+    firstname_box_entry.insert(0, "Enter first name")
+    firstname_box_entry.pack(pady=10)
 
     tk.Label(screen, text="Last name", font=("Times New Roman", 15)).pack(pady=20)
-    lastname_box = tk.Entry(screen, bg="white", fg="black")
-    lastname_box.insert(0, "Enter last name")
-    lastname_box.pack(pady=10) 
-
-
+    lastname_box_entry = tk.Entry(screen, bg="white", fg="black")
+    lastname_box_entry.insert(0, "Enter last name")
+    lastname_box_entry.pack(pady=10) 
+    
     tk.Label(screen, text="Student Number", font=("Times New Roman", 15)).pack(pady=20)
     studentnumber_box = tk.Entry(screen, bg="white", fg="black")
     studentnumber_box.insert(0, "Enter your student number")
@@ -34,13 +46,14 @@ def tournament_config():
     password.insert(0, "At least 8 characters long")
     password.pack(pady=10)  
 
+    # Next button stays inside the function to keep the main page clean
     next_button = tk.Button(screen, text="Next", command=individual_or_team)
     next_button.pack(pady=10) 
 
 def login_screen(): 
     clear_window()
     screen.title("Login")
-    tk.Label(screen,font=("Times New Roman", 35)).pack(pady=20)
+    tk.Label(screen, text="Login", font=("Times New Roman", 35)).pack(pady=20)  
 
     tk.Label(screen, text="Student Number", font=("Times New Roman", 15)).pack(pady=20)
     studentnumber_box = tk.Entry(screen, bg="white", fg="black")
@@ -57,9 +70,11 @@ def login_screen():
 
 def individual_or_team(): 
     clear_window()
-    screen.title("Hello", student_name)
-    tk.Label(screen,font=("Times New Roman", 35)).pack(pady=20)
+    # Fixed syntax error: removed the extra '('
+    screen.title(f"Hello, {student_name}")
+    tk.Label(screen, text=f"Hello, {student_name}", font=("Times New Roman", 35)).pack(pady=20)  
 
+    # Selection buttons stay localized here
     individual_button = tk.Button(screen, text="individual", command=events) 
     individual_button.pack(pady=10)
 
@@ -67,13 +82,12 @@ def individual_or_team():
     team_button.pack(pady=10)
 
 def events(): 
-    "jfio"
+    """Placeholder for tournament events."""
+    clear_window()
+    tk.Label(screen, text="Events List", font=("Times New Roman", 35)).pack(pady=20)
 
-
-screen = tk.Tk()
-screen.geometry("800x600")
-screen.title("Tournament App") 
-
+# ------------------------------------------- MAIN SCREEN ----------------------------------------------------------
+# This section only contains the landing page UI
 title = tk.Label(screen, text="Tournament App", font=("Times New Roman", 35))
 title.pack(padx=10, pady=20) 
 
@@ -81,24 +95,9 @@ button_frame = tk.Frame(screen)
 button_frame.pack(pady=10)
 
 login_button = tk.Button(button_frame, text="Log in", command=login_screen)
-login_button.pack(padx=10,pady=10)   
-
-firstname_box = "" 
-secondname_box =  ""
-
-student_name = firstname_box + secondname_box 
+login_button.pack(padx=10, pady=10)   
 
 signup_button = tk.Button(button_frame, text="Sign up", command=tournament_config)
-signup_button.pack(side="right",padx=10,pady=10) 
-
-next_button = tk.Button(screen, text="Next", command=individual_or_team) 
-next_button.pack(pady=10)
-
-individual_button = tk.Button(screen, text="individual", command=events) 
-individual_button.pack(pady=10)
-
-team_button = tk.Button(screen,text="team", command=events)
-team_button.pack(side="right",padx=10,pady=10)
-
+signup_button.pack(side="right", padx=10, pady=10)  
 
 screen.mainloop() 
